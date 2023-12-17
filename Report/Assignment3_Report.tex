@@ -16,10 +16,12 @@
 
 \begin{document}
 	\maketitle
-	\section*{Part 1}
-	\subsection*{Dataset1 - provided from course site}
+	\tableofcontents
+	\newpage
+	\section{Part 1}
+	\subsection{Dataset1 - provided from course site}
 	No changes to column values were made to the first dataset, only z-score normalization was done on the columns except the last one (class column) with simple jupyter notebook "dataCleaningNotebooks.ipynb" which is situated in directory "DataCleaning". The file for this dataset is in directory "datasets" and the name is "A3-dataset1Modified.csv". 
-	\subsection*{Dataset from internet - Dry bean dataset}
+	\subsection{Dataset from internet - Dry bean dataset}
 	The second dataset was obtained from the kaggle.com website specifically \cite{DatasetDryBeans}. This website consists of 16 variables, one class column and 2501 features. The database represents data that was obtained from a computer vision system where seven different dry beans were examined by a high resolution camera and over 13 000 images were taken. The website provides two csv files, one for testing and one for training, only the training csv file is used because the criterium for this task that the dataset needs to have at least 200 features and the training csv file has 2500 features which is enough. \\
 	\\
 	This dataset class column values are categorical values (text) which represents different beans. There exist seven different beans names and they were changed for numbers. How the bean names were changes in the class column is shown in table \ref{BeanClassChange}. Z-score normalization was applied to every column because the columns had a lot of outliers, the last column, class, was not normalized. The modification and normalization was done with script "dataCleaningNotebooks.ipynb" which is in directory "DataCleaning". 
@@ -48,8 +50,10 @@
 		\label{BeanClassChange}
 	\end{table}
 	\newpage
-	\section*{Part 2}
-	\subsection*{PCA}
+	\section{Part 2}
+	\subsection{Implementation of methods}
+	The code for the Implementation of methods is on this github repository \cite{GitHubRepo}. 
+	\subsection{PCA}
 	Implementation of PCA is situated in directory "PCA" where a jupyter notebook file exist, "PCA.ipynb". \\
 	\\
 	Scatter plot and scree plot for dataset 1 is visualized in figure \ref{Dataset1scatterPlot} and \ref{Dataset1ScreePlot} respectively. Plot for dataset2 is visualized
@@ -86,7 +90,7 @@
 	\end{figure}
 
 	\newpage
-	\subsection*{t-SNE}
+	\subsection{t-SNE}
 	Documentation for t-SNE in python was accessed by the official scikit learn website \cite{Doct-SNE}. According to the documentation the important parameters that can be tuned are following:
 	\begin{itemize}
 		\item perplexity - values should be between 5 and 50. Is connected to number of nearest neighbours, for bigger datasets this parameter should be bigger.
@@ -307,12 +311,12 @@
 		\label{Dataset2DiffLearningRate}
 	\end{figure}
 	\newpage
-	\subsection*{k-means}
+	\subsection{k-means}
 	\textbf{Dataset 1:}\\
 	\\
 	Script for k-means, k-means.ipynb, algorithm is situaited in directory "K-means".\\
 	\\
-	To get the optimal values for k, elbow method was used as describe in this source \cite{k-means}. The optimal value for k is 4 for dataset 1 because according to the elbow method plot in figure \ref{dataset1ElobowMethod}, the "elbow" appears when k = 4. Because the datasets has more than two features, the datasets were dimensionally reduced with PCA. \\
+	To get the optimal values for k, elbow method was used as describe in this source \cite{K-means}. The optimal value for k is 4 for dataset 1 because according to the elbow method plot in figure \ref{dataset1ElobowMethod}, the "elbow" appears when k = 4. Because the datasets has more than two features, the datasets were dimensionally reduced with PCA. \\
 	\\
 	As an additional evaluation of the k-means performance ARI (Adjusted Rand Index) and NMI (Normalized Mutual Information) scores was used. These scores ranges between 0 and 1 where 0 means worst classification and 1 means perfect classification. The ARI and NMI scores are shown in table \ref{dataset1k-meansARINMI}.\\
 	\\
@@ -598,10 +602,10 @@
 	\end{figure}
 
 	\newpage
-	\subsection*{AHC}
+	\subsection{AHC}
 	Script for this method is situated in directory AHC and the name of the script is AHC.ipynb. \\
 	\\
-	The dendrograms are shown in figure \ref{Dataset1Dendrograms} and figure \ref{Dataset2Dendrograms}. Distance threshold was set to visualize the different clusters that are formed from the AHC method. For dataset 1 distance threshold was set to 5 and 3 for complete linkange (figure \ref{Dataset1completeLinkage}) and UPGMA linkage (figure ref{Dataset1UPGMA}) respectively. For dataset 2 distance threshold was set to 11 and 4.1 for complete linkange (figure \ref{Dataset2completeLinkage}) and UPGMA linkage (figure \ref{Dataset2UPGMA}) respectively.\\
+	The dendrograms are shown in figure \ref{Dataset1Dendrograms} and figure \ref{Dataset2Dendrograms}. Distance threshold was set to visualize the different clusters that are formed from the AHC method. For dataset 1 distance threshold was set to 5 and 3 for complete linkange (figure \ref{Dataset1completeLinkage}) and UPGMA linkage (figure \ref{Dataset1UPGMA}) respectively. For dataset 2 distance threshold was set to 11 and 4.1 for complete linkange (figure \ref{Dataset2completeLinkage}) and UPGMA linkage (figure \ref{Dataset2UPGMA}) respectively.\\
 	\\
 	\begin{table}[H]
 		\centering
@@ -633,7 +637,7 @@
 	\\
 	The same conclusion can be made for dataset 2. In figure \ref{Dataset2completeLinkage} where complete linkage dendrogram is shown and table \ref{Dataset2ClassesCountTable} which shows how many datapoints belongs to each class, the dataset is much better represented than using UPGMA. The purple cluster can be the datapoints that belongs class 4, which contains the most datapoints.\\
 	\\
-	This method is slow, takes a lot of time to create the dendrograms espacially the complete linkage for dataset 2, take approximatly 1 minute. This method seems to be more expensive resources wise than the other methods.
+	This method is slow, takes a lot of time to create the dendrograms espacially the complete linkage for dataset 2, takes approximatly 1 minute. This method seems to be more expensive resources wise than the other methods.
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{.5\textwidth}
@@ -671,23 +675,82 @@
 	\end{figure}
 
 	\newpage
-	\subsection*{SOM}	
-	For dataset 1 best plot is when sigma = 0.2, learning rate = 0.5, nr of iterations = 10000.\\
-	Denna gången har bara den bästa output, och sen gör en table som visar vilka parameter values jag testade
-	% Do tests on different values for: number of neurons, learning rate, nr iterations, sigma value
-	% Different settings: 
-	% size of the map - x and y
-	% learning rate
-	% sigma - neighborhood function
-	% heatmap - most represented class in each position 
-	% plot the component planes
-	\subsection*{Conclusion}
-	\newpage
-	Before submittion, check the script descriptions in the jupyter notebook files if they are correct and full\\
-	
-	Write a conclusion about the five methods, which one is best and worst, which is most efficient and so on
+	\subsection{SOM}	
+	The different parameters have the following influence on the output:
+	\begin{itemize}
+		\item grid size - the grid size needs to be atleast 100 according to assignment description, but some source recommends grid size $5*sqrt(N)$ where N is the number of samples.
+		\item sigma - defines radius of neighborhood function. If to small the model will not fully represent the multi dimensional data onto the two dimensional plot. If too big then the model will overfit the data.
+		\item learning rate - how much weights are updated during each iteration. 
+		\item Number of iterations - For dataset 1, 10 000 iterations was enough and for dataset 2, 20 000 iterations was needed for the model to visualize the clusters.
+	\end{itemize}
+	With this method only the best plot is visualized. All other output can be accessed on the github repo in directory SOM/Output.\\
 	\\
-	Compare how the methods have classified the datasets
+	\textbf{Dataset 1}\\
+	\\
+	After numerous tests on the parameters, the best plot was obtained with test 1. The different values of parameters that were tested for dataset 1 are visualized in table \ref{Dataset1SOMParameterValues}. The plot is visualized in figure \ref{Dataset1BestOutputSOM}, the darker colours shows where the clusters are identified and different figures in the plot shows different clusters. The SOM method doesn't quite identify many clusters in dataset 1. Even after playing with the parameter values it's hard for the model to identify the clusters.\\
+	\\
+	\textbf{Dataset 2}\\
+	The different tests that were made are listed in table \ref{Dataset2SOMParameterValues}. There was more tests done but there is no need to include all of them. All the tests are included in the directory SOM/Output on the github repo. Surprisingly this method had difficulty in clustering the dataset 2. Can be the case that the parameters wasn't adjusted properly. The best plot was obtained with test 8 and the output plot is visualized in figure \ref{Dataset2BestOutputSOM}.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Test nr:& 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+			\hline
+			Grid size & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 100 & 144 & 144 \\
+			\hline
+			Sigma & 0.2 & 0.2 & 0.5 & 0.5 & 0.5 & 0.5 & 0.5 & 0.7 & 0.2 & 0.5 \\
+			\hline
+			Learning rate & 0.5 & 0.5 & 0.2 & 0.5 & 0.5 & 0.7 & 0.7 & 0.5 & 0.5 & 0.5 \\
+			\hline
+			Nr of iterations & 10000 & 15000 & 10000 & 10000 & 15000 & 10000 & 15000 & 10000 & 15000 & 10000 \\
+			\hline
+		\end{tabular}
+		\caption{Dataset 1: parameter values that were tested}
+		\label{Dataset1SOMParameterValues}
+	\end{table}
+
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Test nr:& 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+			\hline
+			Grid size & 256 & 256 & 256 & 256 & 256 & 256 & 256 & 256 & 144 & 144 \\
+			\hline
+			Sigma & 0.9 & 0.9 & 0.9 & 0.8 & 0.8 & 0.8 & 0.7 & 0.7 & 0.2 & 0.5 \\
+			\hline
+			Learning rate & 0.4 & 0.2 & 0.1 & 0.6 & 0.2 & 0.2 & 0.4 & 0.2 & 0.5 & 0.2 \\
+			\hline
+			Nr of iterations & 10000 & 10000 & 10000 & 10000 & 15000 & 10000 & 15000 & 20000 & 15000 & 10000 \\
+			\hline
+		\end{tabular}
+		\caption{Dataset 2: parameter values that were tested}
+		\label{Dataset2SOMParameterValues}
+	\end{table}
+
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{../SOM/Output/Dataset1/Plot|Grid100|sigma0.2|lea0.5|iter10000.png}
+			\caption{Dataset 1 best output plot}
+			\label{Dataset1BestOutputSOM}
+		\end{subfigure}%
+		\begin{subfigure}{.5\textwidth}
+			\centering
+			\includegraphics[width=.9\linewidth]{../SOM/Output/Dataset2/Plot|Grid256|sigma0.7|lea0.2|iter20000.png}
+			\caption{Dataset 2 best output plot}
+			\label{Dataset2BestOutputSOM}
+		\end{subfigure}
+		\caption{Dataset 1 and 2 best output plots}
+		\label{Dataset1And2BestOutputSOM}
+	\end{figure}
+	\newpage
+	\subsection{Conclusion}
+	All the different methods had difficulties to cluster the dataset 1. Visually PCA and AHC did the best job in clustering and classifying the dataset 1. For dataset 2 almost all methods did a very good job in clustering this dataset. The worst clustering for dataset 2 was SOM and the best was k-means and AHC. \\
+	\\
+	Dataset 1's poor classification performance across all methods likely cames from its limited sample size of only 360 instances. In contrast, Dataset 2, with 2500 samples, has more classes as well but the methods still handles the classification effectively. This shows the importance of having an adequate sample size for machine learning. Increasing Dataset 1's sample size could improve its classification accuracy across different methods.
 	\bibliographystyle{plainurl} 
 	\bibliography{ref} 
 \end{document}
